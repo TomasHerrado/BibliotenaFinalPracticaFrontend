@@ -1,0 +1,196 @@
+.bg-gradient {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.btn-gradient {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-gradient:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.card {
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.card-header {
+  border-bottom: none;
+}
+
+/* Libros Seleccionados */
+.selected-books-container {
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 10px;
+  background: #f8f9fa;
+  border-radius: 10px;
+}
+
+.selected-book-card {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  border: 2px solid #e9ecef;
+  transition: all 0.3s ease;
+}
+
+.selected-book-card:hover {
+  border-color: #667eea;
+  box-shadow: 0 3px 10px rgba(102, 126, 234, 0.1);
+}
+
+/* Grid de libros disponibles */
+.available-books-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 15px;
+  max-height: 500px;
+  overflow-y: auto;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 10px;
+}
+
+.book-card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  border: 2px solid #e9ecef;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  position: relative;
+}
+
+.book-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  border-color: #667eea;
+}
+
+.book-card.selected {
+  border-color: #667eea;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+  box-shadow: 0 3px 15px rgba(102, 126, 234, 0.2);
+}
+
+.book-card-icon {
+  font-size: 2.5rem;
+  color: #667eea;
+  min-width: 50px;
+  text-align: center;
+}
+
+.book-card.selected .book-card-icon {
+  color: #764ba2;
+}
+
+.book-card-content {
+  flex-grow: 1;
+}
+
+.book-title {
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 8px;
+  font-size: 1rem;
+}
+
+.book-author,
+.book-isbn {
+  font-size: 0.875rem;
+  color: #718096;
+}
+
+.book-card-checkbox {
+  display: flex;
+  align-items: center;
+}
+
+.book-card-checkbox input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: #667eea;
+}
+
+/* Animaciones */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-in {
+  animation: slideIn 0.3s ease-out;
+}
+
+/* Scrollbar personalizado */
+.selected-books-container::-webkit-scrollbar,
+.available-books-grid::-webkit-scrollbar {
+  width: 8px;
+}
+
+.selected-books-container::-webkit-scrollbar-track,
+.available-books-grid::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.selected-books-container::-webkit-scrollbar-thumb,
+.available-books-grid::-webkit-scrollbar-thumb {
+  background: #667eea;
+  border-radius: 10px;
+}
+
+.selected-books-container::-webkit-scrollbar-thumb:hover,
+.available-books-grid::-webkit-scrollbar-thumb:hover {
+  background: #764ba2;
+}
+
+/* Input de búsqueda */
+.input-group-lg .form-control {
+  border-radius: 10px;
+  border: 2px solid #e9ecef;
+  padding: 12px 20px;
+  font-size: 1rem;
+}
+
+.input-group-lg .form-control:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+}
+
+.input-group-text {
+  border: 2px solid #e9ecef;
+  border-right: none;
+  border-radius: 10px 0 0 10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .available-books-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .book-card {
+    padding: 15px;
+  }
+  
+  .book-card-icon {
+    font-size: 2rem;
+    min-width: 40px;
+  }
+}

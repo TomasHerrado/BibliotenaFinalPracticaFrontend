@@ -1,0 +1,41 @@
+<div class="container mt-4">
+  <h2>{{ isEdit ? 'Editar Libro' : 'Nuevo Libro' }}</h2>
+  
+  <form [formGroup]="libroForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="isbn" class="form-label">ISBN</label>
+      <input type="text" class="form-control" id="isbn" formControlName="isbn">
+      <div *ngIf="libroForm.get('isbn')?.invalid && (libroForm.get('isbn')?.dirty || libroForm.get('isbn')?.touched)"
+           class="text-danger">
+        <small *ngIf="libroForm.get('isbn')?.errors?.['required']">ISBN es requerido</small>
+        <small *ngIf="libroForm.get('isbn')?.errors?.['minlength']">ISBN debe tener al menos 10 caracteres</small>
+      </div>
+    </div>
+    
+    <div class="mb-3">
+      <label for="titulo" class="form-label">Título</label>
+      <input type="text" class="form-control" id="titulo" formControlName="titulo">
+      <div *ngIf="libroForm.get('titulo')?.invalid && (libroForm.get('titulo')?.dirty || libroForm.get('titulo')?.touched)"
+           class="text-danger">
+        <small>Título es requerido</small>
+      </div>
+    </div>
+    
+    <div class="mb-3">
+      <label for="autor" class="form-label">Autor</label>
+      <input type="text" class="form-control" id="autor" formControlName="autor">
+      <div *ngIf="libroForm.get('autor')?.invalid && (libroForm.get('autor')?.dirty || libroForm.get('autor')?.touched)"
+           class="text-danger">
+        <small>Autor es requerido</small>
+      </div>
+    </div>
+    
+    <div class="d-flex justify-content-between">
+      <button type="button" class="btn btn-secondary" routerLink="/libros">Cancelar</button>
+      <button type="submit" class="btn btn-primary" [disabled]="libroForm.invalid || loading">
+        <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        {{ isEdit ? 'Actualizar' : 'Guardar' }}
+      </button>
+    </div>
+  </form>
+</div>

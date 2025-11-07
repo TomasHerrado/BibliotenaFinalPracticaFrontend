@@ -1,0 +1,64 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Listado de Alquileres</h2>
+    <button class="btn btn-primary" routerLink="/alquileres/nuevo">Nuevo Alquiler</button>
+  </div>
+
+  <div *ngIf="loading" class="text-center">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <div *ngIf="!loading && alquileres.length === 0" class="alert alert-info">
+    No hay alquileres registrados.
+  </div>
+
+  <div *ngIf="!loading && alquileres.length > 0" class="table-responsive">
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Cliente</th>
+          <th>Fecha Reserva</th>
+          <th>Fecha Devolución</th>
+          <th>Libros</th>
+          <th>Total</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let alquiler of alquileres">
+          <td>{{ alquiler.id }}</td>
+          <td>{{ alquiler.nombreCliente }}</td>
+          <td>{{ alquiler.fechaReserva | date:'dd/MM/yyyy' }}</td>
+          <td>{{ alquiler.fechaDevolucion ? (alquiler.fechaDevolucion | date:'dd/MM/yyyy') : 'Pendiente' }}</td>
+          <td>
+            <ul class="list-unstyled">
+              <li *ngFor="let libro of alquiler.librosReservados">
+                {{ libro.titulo }} ({{ libro.isbn }})
+              </li>
+            </ul>
+          </td>
+          <td>{{ alquiler.total | currency }}</td>
+          <td>
+            <span [ngClass]="{
+              'badge bg-success': alquiler.fechaDevolucion,
+              'badge bg-warning': !alquiler.fechaDevolucion
+            }">
+              {{ alquiler.fechaDevolucion ? 'Devuelto' : 'Pendiente' }}
+            </span>
+          </td>
+          <td>
+            <button *ngIf="!alquiler.fechaDevolucion" 
+                    class="btn btn-sm btn-outline-success" 
+                    (click)="devolverLibros(alquiler.id!)">
+              Devolver
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

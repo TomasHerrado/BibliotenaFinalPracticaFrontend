@@ -1,0 +1,55 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Listado de Libros</h2>
+    <button class="btn btn-primary" routerLink="/libros/nuevo">Nuevo Libro</button>
+  </div>
+
+  <div *ngIf="loading" class="text-center">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <div *ngIf="!loading && libros.length === 0" class="alert alert-info">
+    No hay libros registrados.
+  </div>
+
+  <table *ngIf="!loading && libros.length > 0" class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>ISBN</th>
+        <th>Título</th>
+        <th>Autor</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let libro of libros">
+        <td>{{ libro.id }}</td>
+        <td>{{ libro.isbn }}</td>
+        <td>{{ libro.titulo }}</td>
+        <td>{{ libro.autor }}</td>
+        <td>
+          <span [ngClass]="{
+            'badge bg-success': libro.estado === 'DISPONIBLE',
+            'badge bg-warning': libro.estado === 'RESERVADO'
+          }">
+            {{ libro.estado }}
+          </span>
+        </td>
+        <td>
+          <div class="btn-group" role="group">
+            <button class="btn btn-sm btn-outline-primary" [routerLink]="['/libros/editar', libro.id]">
+              Editar
+            </button>
+            <button class="btn btn-sm btn-outline-danger" (click)="deleteLibro(libro.id!)">
+              Eliminar
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
