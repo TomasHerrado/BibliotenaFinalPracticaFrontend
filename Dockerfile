@@ -8,6 +8,6 @@ RUN npm run build
 
 # Etapa de producción
 FROM nginx:alpine
-COPY --from=builder /app/dist/bibliotena-final-practica-frontend /usr/share/nginx/html
+COPY --from=builder /app/dist/biblioteca-final-practica-front /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
