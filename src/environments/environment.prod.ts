@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://biblioteca-backend.onrender.com/api/biblioteca'
+  apiUrl: 'https://biblioteca-service-rxon.onrender.com/api/biblioteca'
 };
